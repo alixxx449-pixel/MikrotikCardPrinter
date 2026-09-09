@@ -19,7 +19,18 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Build Debug APK (install specified Gradle)
+      - name: Set up Android SDK (platforms & build-tools)
+        uses: r0adkll/setup-android@v2
+        with:
+          api-level: 34
+          build-tools: 34.0.0
+          components: |
+            platform-tools
+            build-tools;34.0.0
+            platforms;android-34
+            extras;google;m2repository
+
+      - name: Run Gradle build (install specified Gradle if needed)
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: '8.4'
