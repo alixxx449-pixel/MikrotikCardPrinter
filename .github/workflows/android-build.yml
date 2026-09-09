@@ -19,13 +19,11 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Gradle
+      - name: Build Debug APK (install specified Gradle)
         uses: gradle/gradle-build-action@v2
         with:
           gradle-version: '8.4'
-
-      - name: Build Debug APK
-        run: ./gradlew :app:assembleDebug --no-daemon
+          arguments: ':app:assembleDebug'
 
       - name: Create Release
         id: create_release
